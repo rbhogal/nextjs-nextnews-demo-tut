@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+.next/
+out/
+ 
+# Environment variables
+.env*
+!.env.example  # Keep a sample env file for reference
+
+# Build artifacts
+dist/
+.cache/
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
