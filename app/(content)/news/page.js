@@ -1,11 +1,22 @@
 import NewsList from "@/components/news-list";
+import { getAllNews } from "@/lib/news";
 
 export default async function NewsPage() {
-  const response = await fetch("http://localhost:8080/news");
+  const news = getAllNews();
+  const Database = require("better-sqlite3");
+  const db = new Database("your-database.db");
 
-  if (!response.ok) throw new Error("Failed to fetch news.");
+  const row = db
+    .prepare(
+      "SELECT name FROM sqlite_master WHERE type='table' AND name='news'"
+    )
+    .get();
 
-  const news = await response.json();
+  if (row) {
+    console.log("Table exists:", row.name);
+  } else {
+    console.log("Table does NOT exist.");
+  }
 
   return (
     <>
